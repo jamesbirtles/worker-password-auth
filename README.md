@@ -6,6 +6,15 @@ for use in JavaScript. This provides two simple methods to hash a password, and 
 against a password. This package is intended to be used in serverless-like environments,
 specifically Cloudflare workers.
 
+## Usage
+
+```js
+import { hashPassword, verifyPassword } from "worker-password-auth";
+
+const hash = await hashPassword("abc123");
+assert((await verifyPassword("abc123", hash)) === true);
+```
+
 ## License
 
 Licensed under either of
