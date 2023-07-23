@@ -1,0 +1,36 @@
+{
+    "name": "worker-password-auth",
+    "version": "0.1.0",
+    "description": "Password hashing and verifying for cloudflare workers using argon2",
+    "main": "bundle.js",
+    "types": "bundle.d.ts",
+    "type": "module",
+    "keywords": [
+        "argon2",
+        "argon2id",
+        "password",
+        "hashing",
+        "cloudflare",
+        "workers"
+    ],
+    "repository": "https://github.com/jamesbirtles/worker-password-auth.git",
+    "author": "James Birtles <james@birtles.dev>",
+    "license": "MIT OR Apache-2.0",
+    "scripts": {
+        "build": "wasm-pack build --target web --release --no-pack && rollup -c",
+        "prepublishOnly": "pnpm run build"
+    },
+    "devDependencies": {
+        "@rollup/plugin-wasm": "^6.1.3",
+        "@wasm-tool/rollup-plugin-rust": "^2.4.0",
+        "prettier": "^3.0.0",
+        "rollup": "^3.26.3"
+    },
+    "files": [
+        "bundle.js",
+        "bundle.d.ts",
+        "README.md",
+        "LICENSE_APACHE",
+        "LICENSE_MIT"
+    ]
+}
