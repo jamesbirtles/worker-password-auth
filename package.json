@@ -1,9 +1,25 @@
 {
     "name": "worker-password-auth",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Password hashing and verifying for cloudflare workers using argon2",
-    "main": "bundle.js",
-    "types": "bundle.d.ts",
+    "main": "nodejs/index.js",
+    "types": "nodejs/index.d.ts",
+    "exports": {
+        ".": {
+            "node": {
+                "default": "./nodejs/index.js",
+                "types": "./nodejs/index.d.ts"
+            },
+            "browser": {
+                "default": "./web/index.js",
+                "types": "./web/index.d.ts"
+            },
+            "default": {
+                "default": "./web/index.js",
+                "types": "./web/index.d.ts"
+            }
+        }
+    },
     "type": "module",
     "keywords": [
         "argon2",
@@ -17,7 +33,7 @@
     "author": "James Birtles <james@birtles.dev>",
     "license": "MIT OR Apache-2.0",
     "scripts": {
-        "build": "wasm-pack build --target web --release --no-pack && rollup -c",
+        "build": "wasm-pack build --target web --release --no-pack --out-dir web/pkg && wasm-pack build --target nodejs --release --no-pack --out-dir nodejs/pkg",
         "prepublishOnly": "pnpm run build"
     },
     "devDependencies": {
@@ -27,8 +43,8 @@
         "rollup": "^3.26.3"
     },
     "files": [
-        "bundle.js",
-        "bundle.d.ts",
+        "web/**/*",
+        "nodejs/**/*",
         "README.md",
         "LICENSE_APACHE",
         "LICENSE_MIT"

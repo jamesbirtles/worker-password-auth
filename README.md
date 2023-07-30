@@ -15,6 +15,22 @@ const hash = await hashPassword("abc123");
 assert((await verifyPassword("abc123", hash)) === true);
 ```
 
+### Usage with Vite
+
+This package imports the wasm file directly in web targets. This means in vite you may need to use
+[`vite-plugin-wasm`](https://github.com/Menci/vite-plugin-wasm).
+
+E.g.
+
+```ts
+import wasm from "vite-plugin-wasm";
+import topLevelAwait from "vite-plugin-top-level-await";
+
+export default {
+    plugins: [wasm(), topLevelAwait()],
+};
+```
+
 ## License
 
 Licensed under either of
